@@ -1,16 +1,17 @@
 import { Router } from "express";
 import controllerDoctor from "./controllers/controller.doctor.js";
 import controllerUser from "./controllers/controller.user.js";
+import jwt from "./token.js";
 
 
 const router = Router();
 
 // doctors
 
-router.get("/doctors", controllerDoctor.Listar);
-router.post("/doctors", controllerDoctor.Inserir);
-router.put("/doctors/:id_doctor", controllerDoctor.Editar);
-router.delete("/doctors/:id_doctor", controllerDoctor.Excluir);
+router.get("/doctors", jwt.validateToken, controllerDoctor.Listar);
+router.post("/doctors", jwt.validateToken, controllerDoctor.Inserir);
+router.put("/doctors/:id_doctor", jwt.validateToken, controllerDoctor.Editar);
+router.delete("/doctors/:id_doctor", jwt.validateToken, controllerDoctor.Excluir);
 
 // Users
 
