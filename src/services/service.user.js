@@ -1,29 +1,30 @@
 import bcrypt from "bcrypt";
 import repoUser from "../repositories/repository.user.js";
-async function Listar(name) {
-    const doctors = await repoDoctor.Listar(name);
 
-    return doctors;
-}
 
 async function Inserir(name, email, password) {
 
     const hashPassword = await bcrypt.hash(password, 10);
     const   user = await repoUser.Inserir(name, email, hashPassword);
 
+    user.token = "token";
+
     return user;
 }
 
-async function Editar(id_doctor, name, specialty, icon) {
-    const doctor = await repoDoctor.Editar( id_doctor, name, specialty, icon);
+async function Login(email, password) {
+    const user = await repoUser.ListarByEmail( email);
 
-    return doctor;
+    if (user.length == 0)
+        return [];
+    else
+        if (await bcrypt.compare(password, user.password)) {
+            delete user.password;
+
+            user.token = "token";
+            return user;
+        } else
+            return [];
 }
 
-async function Excluir(id_doctor) {
-    const doctor = await repoDoctor.Excluir( id_doctor);
-
-    return doctor;
-}
-
-export default { Listar , Inserir, Editar,  Excluir };
+export default { Inserir, Login };
