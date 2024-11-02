@@ -23,4 +23,10 @@ async function Excluir(id_doctor) {
     return doctor;
 }
 
-export default { Listar , Inserir, Editar,  Excluir };
+async function ListarServicos(id_doctor) {
+    const serv = await repoDoctor.ListarServicos( id_doctor);
+
+    return serv;
+}
+
+export default { Listar , Inserir, Editar,  Excluir, ListarServicos };
