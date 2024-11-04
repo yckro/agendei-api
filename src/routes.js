@@ -1,6 +1,7 @@
 import { Router } from "express";
 import controllerDoctor from "./controllers/controller.doctor.js";
 import controllerUser from "./controllers/controller.user.js";
+import controllerAppointment from "./controllers/controller.appointment.js";
 import jwt from "./token.js";
 
 
@@ -22,7 +23,8 @@ router.post("/users/login", controllerUser.Login);
 
 // Reservas
 
-router.get("/appointments", jwt.validateToken, controllerAppointment.Listar);
+router.get("/appointments", jwt.validateToken, controllerAppointment.ListarByUser);
+
 
 
 
