@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 
 const SQLite = sqlite3.verbose();
 
-function query(command, params, method = "all") {
+function query(command, params, method = 'all') {
     return new Promise(function (resolve, reject) {
         db[method](command, params, function (error, result) {
             if (error)
@@ -13,10 +13,9 @@ function query(command, params, method = "all") {
     });
 }
 
-const db = new SQLite.Database("./src/database/banco.db", sqlite3.OPEN_READWRITE, (err) => {
-    if (err) {
-        return console.log("Erro ao conectar com o banco de dados:" + err.message);
-    }
+const db = new SQLite.Database("./src/database/banco.db", SQLite.OPEN_READWRITE, (err) => {
+    if (err)
+        return console.log("Erro ao conectar com banco: " + err.message);
 });
 
 export { db, query };

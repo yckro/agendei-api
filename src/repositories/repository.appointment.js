@@ -4,7 +4,7 @@ async function Listar(id_user) {
 
     let sql = `select a.id_appointment, s.description as service, 
     d.name as doctor, d.specialty,
-    a.booking_date, a.booking_hour, u.name as user, ds.price
+   a.booking_date, a.booking_hour, u.name as user, ds.price
 from appointments a
 join services s on (s.id_service = a.id_service)
 join doctors d on (d.id_doctor = a.id_doctor)

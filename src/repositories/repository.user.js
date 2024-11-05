@@ -1,11 +1,11 @@
 import { query } from "../database/sqlite.js";
 
-async function Inserir(name, email, Password) {
+async function Inserir(name, email, password) {
 
-    let sql = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)
+    let sql = `insert into users(name, email, password) values(?, ?, ?)
     returning id_user`;
 
-    const user = await query(sql, [name, email, Password]);
+    const user = await query(sql, [name, email, password]);
 
     return user[0];
 }
@@ -22,5 +22,13 @@ async function ListarByEmail(email) {
         return user[0];
 }
 
+async function Profile(id_user) {
 
-export default { Inserir, ListarByEmail };
+    let sql = `select id_user, name, email from users where id_user = ?`;
+
+    const user = await query(sql, [id_user]);
+
+    return user[0];
+}
+
+export default { Inserir, ListarByEmail, Profile }
