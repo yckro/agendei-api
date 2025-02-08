@@ -19,10 +19,17 @@ router.post("/users/login", controllerUser.Login);
 router.get("/users/profile", jwt.ValidateToken, controllerUser.Profile);
 
 
+
 // Reservas (appointments)...
 router.get("/appointments", jwt.ValidateToken, controllerAppointment.ListarByUser);
 router.post("/appointments", jwt.ValidateToken, controllerAppointment.Inserir);
 router.delete("/appointments/:id_appointment", jwt.ValidateToken, controllerAppointment.Excluir);
 
+
+// Rotas do admin...
+
+router.post("/admin/register", controllerUser.InserirAdmin);
+router.post("/admin/login", controllerUser.LoginAdmin);
+router.get("/admin/appointments", jwt.ValidateToken, controllerAppointment.Listar);
 
 export default router;
