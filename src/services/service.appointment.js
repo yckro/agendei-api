@@ -7,6 +7,14 @@ async function Listar(id_user, dt_start, dt_end, id_doctor) {
     return appointments;
 }
 
+async function ListarId(id_appointment) {
+
+    const appointments = await repoAppointment.ListarId(id_appointment);
+
+    return appointments;
+}
+
+
 async function Inserir(id_user, id_doctor, id_service,
     booking_date, booking_hour) {
 
@@ -23,4 +31,4 @@ async function Excluir(id_user, id_appointment) {
     return appointment;
 }
 
-export default { Listar, Inserir, Excluir };
+export default { Listar, Inserir, Excluir, ListarId };

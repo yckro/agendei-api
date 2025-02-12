@@ -32,5 +32,6 @@ router.post("/admin/register", controllerUser.InserirAdmin);
 router.post("/admin/login", controllerUser.LoginAdmin);
 router.get("/admin/appointments", jwt.ValidateToken, controllerAppointment.Listar);
 router.get("/admin/users", jwt.ValidateToken, controllerUser.Listar);
+router.get("/admin/appointments/:id_appointment", jwt.ValidateToken, controllerAppointment.ListarId);
 
 export default router;
