@@ -22,6 +22,15 @@ async function ListarByEmail(email) {
         return user[0];
 }
 
+async function Profile(id_user) {
+
+    let sql = `select id_user, name, email from users where id_user = ?`;
+
+    const user = await query(sql, [id_user]);
+
+    return user[0];
+}
+
 async function InserirAdmin(name, email, password) {
 
     let sql = `insert into admins(name, email, password) values(?, ?, ?)
@@ -44,15 +53,6 @@ async function ListarByEmailAdmin(email) {
         return user[0];
 }
 
-async function Profile(id_user) {
-
-    let sql = `select id_user, name, email from admins where id_user = ?`;
-
-    const user = await query(sql, [id_user]);
-
-    return user[0];
-}
-
 async function Listar() {
 
     let sql = `select id_user, name, email from users order by name`;
@@ -61,8 +61,4 @@ async function Listar() {
     return users;
 }
 
-
-
-
-
-export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin, Listar };
+export default { Inserir, ListarByEmail, Profile, InserirAdmin, ListarByEmailAdmin, Listar }
